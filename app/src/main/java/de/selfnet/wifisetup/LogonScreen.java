@@ -119,11 +119,11 @@ public class LogonScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.logon_screen);
 
-        username = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
-        btn = (Button) findViewById(R.id.button1);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        btn = findViewById(R.id.button1);
 
-        ImageView img = (ImageView) findViewById(R.id.logo);
+        ImageView img = findViewById(R.id.logo);
         //Easter egg for clicking on the logo
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,7 +177,6 @@ public class LogonScreen extends Activity {
                         btn.setClickable(true);
                     }
 
-                    ;
                 });
             }
         };
@@ -350,9 +349,6 @@ public class LogonScreen extends Activity {
             case R.id.privacy:
                 showDialog(getString(R.string.PRIVACY_TITLE), getString(R.string.PRIVACY_AGREEMENT));
                 return true;
-
-            case R.id.exit:
-                System.exit(0);
         }
         return false;
     }

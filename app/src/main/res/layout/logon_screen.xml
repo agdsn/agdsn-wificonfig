@@ -21,7 +21,7 @@
         android:scaleType="fitCenter"
         android:contentDescription="@string/logo_alt_test"
         android:src="@drawable/logo"
-        android:padding="0dp" />
+        android:padding="10dp" />
 
     <TextView
         android:layout_height="wrap_content"
@@ -74,7 +74,6 @@
             android:hint="@string/default_email_hint"
             android:inputType="textEmailAddress"
             android:padding="5dp">
-
             <requestFocus />
         </EditText>
 
@@ -95,8 +94,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:layout_weight="0.15"
-        android:background="#ff5a17"
-        android:textColor="#ffffff"
         android:padding="10dp"
         android:onClick="createConnectionEntryClick"
         android:text="@string/create_connection_entry_button" />
