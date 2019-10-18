@@ -1,4 +1,4 @@
-package de.selfnet.wifisetup;
+package de.agdsn.wifisetup;
 
 import android.app.Activity;
 import android.content.Intent;

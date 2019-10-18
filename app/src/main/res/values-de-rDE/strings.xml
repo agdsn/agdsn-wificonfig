@@ -31,4 +31,5 @@
     </string>
     <string name="error_explain_text">Etwas ist schief gelaufen: %s</string>
     <string name="no_credentials_provided">Bitte gebe deine Anmeldedaten ein.</string>
+    <string name="choose_network">"Netzwerk wählen: "</string>
 </resources>

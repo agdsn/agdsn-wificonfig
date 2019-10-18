@@ -23,8 +23,8 @@
 
 	<string name="ABOUT_CONTENT">This application configures the AG DSN Wi-Fi for your smartphone.</string>
 	<string name="HELP_TEXT">If you face any issues connecting to the wireless LAN please check whether you typed in
-		\t\tyour password and email address correctly. If this doesn\'t help contact <a
-				href="mailto:support@agdsn.de">\t\t\tsupport@agdsn.de.de</a>. \t
+		\t\tyour password and username correctly. If this doesn\'t help contact <a
+				href="mailto:support@agdsn.de">\t\t\tsupport@agdsn.de</a>. \t
 	</string>
 	<string name="logo_alt_test">AG DSN Logo</string>
 	<string name="success_title">Success!</string>
@@ -33,4 +33,9 @@
 	<string name="success_explain_text">A Wi-Fi connection entry with the correct security settings was created.\n\nIf you face problems connecting to the AG DSN Wi-Fi please check whether you\'ve provided the correct credentials. This message only confirms the profile\'s creation but doesn\'t validate you username and password.</string>
 	<string name="error_explain_text">Something went wrong: %s</string>
 	<string name="no_credentials_provided">Please provide your Wi-Fi credentials.</string>
+	<string-array name="networks">
+		<item>IGH</item>
+		<item>gps-test</item>
+	</string-array>
+	<string name="choose_network">Choose network:</string>
 </resources>

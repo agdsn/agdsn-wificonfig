@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package de.selfnet.wifisetup;
+package de.agdsn.wifisetup;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -34,10 +34,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.*;
 
 import java.io.InputStream;
 import java.security.cert.CertificateFactory;
@@ -78,6 +75,7 @@ public class LogonScreen extends Activity {
     private EditText username;
     private EditText password;
     private Button btn;
+    private Spinner networks;
     private Button qrScan;
 
     private String realm = "@email.space";
@@ -91,6 +89,7 @@ public class LogonScreen extends Activity {
     /**
      * Creates a toast for the given text.
      * If a toast is currently shown it gets replaced by this toast.
+     *
      * @param text The text content of the toast
      */
     private void toastText(final String text) {
@@ -112,6 +111,7 @@ public class LogonScreen extends Activity {
 
     /**
      * Called when the activity is created.
+     *
      * @param savedInstanceState
      */
     @Override
@@ -122,6 +122,12 @@ public class LogonScreen extends Activity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         btn = findViewById(R.id.button1);
+
+        networks = findViewById(R.id.networks);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.networks, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        networks.setAdapter(adapter);
 
         ImageView img = findViewById(R.id.logo);
         //Easter egg for clicking on the logo
@@ -141,6 +147,7 @@ public class LogonScreen extends Activity {
 
     /**
      * Gets called by the button to create the connection entry
+     *
      * @param _v the calling view
      */
     public void createConnectionEntryClick(View _v) {
@@ -202,10 +209,9 @@ public class LogonScreen extends Activity {
             }
         }
 
-        ssid = "Selfnet";
-        String subject_match = "/CN=radius-user-2.server.selfnet.de";
-        String altsubject_match = "DNS:radius-user.selfnet.de";
-        String domain_suffix_match = "radius-user.selfnet.de";
+        ssid = networks.getSelectedItem().toString();
+        String altsubject_match = "DNS:radius.agdsn.de";
+        String domain_suffix_match = "radius.agdsn.de";
 
         s_username = username.getText().toString();
         s_password = password.getText().toString();
@@ -260,7 +266,7 @@ public class LogonScreen extends Activity {
         HashMap<String, String> configMap = new HashMap<>();
         // configMap.put(INT_SUBJECT_MATCH, subject_match);
         configMap.put(INT_ALTSUBJECT_MATCH, altsubject_match);
-        configMap.put(INT_ANONYMOUS_IDENTITY, "anonymous@email.service");
+        configMap.put(INT_ANONYMOUS_IDENTITY, "anonymous@agdsn.de");
         configMap.put(INT_IDENTITY, s_username);
         configMap.put(INT_PASSWORD, s_password);
         configMap.put(INT_EAP, "TTLS");
@@ -286,7 +292,7 @@ public class LogonScreen extends Activity {
     private void applyAndroid43EnterpriseSettings(WifiConfiguration currentConfig, HashMap<String, String> configMap) {
         try {
             CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
-            InputStream in = getResources().openRawResource(R.raw.cacert);
+            InputStream in = getResources().openRawResource(R.raw.wifiroot);
             // InputStream in = new ByteArrayInputStream(Base64.decode(ca.replaceAll("-----(BEGIN|END) CERTIFICATE-----", ""), 0));
             X509Certificate caCert = (X509Certificate) certFactory.generateCertificate(in);
 
@@ -309,6 +315,7 @@ public class LogonScreen extends Activity {
 
     /**
      * Related to the menu on the top right corner
+     *
      * @param menu the menu of this activity
      * @return true
      */
@@ -322,6 +329,7 @@ public class LogonScreen extends Activity {
     /**
      * Gets called when there an options menu item is clicked.
      * Will take the according actions
+     *
      * @param item
      * @return true if the event was processed by this function
      */
@@ -335,11 +343,11 @@ public class LogonScreen extends Activity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                showDialog( getString(R.string.ABOUT_TITLE),
+                showDialog(getString(R.string.ABOUT_TITLE),
                         getString(R.string.ABOUT_CONTENT) +
-                        "\n\n" + pi.packageName + "\n" +
-                        "V" + pi.versionName +
-                        "C" + pi.versionCode + "-equi");
+                                "\n\n" + pi.packageName + "\n" +
+                                "V" + pi.versionName +
+                                "C" + pi.versionCode + "-equi");
 
                 return true;
             case R.id.help:
@@ -353,7 +361,7 @@ public class LogonScreen extends Activity {
         return false;
     }
 
-    private void showDialog(String title, String content){
+    private void showDialog(String title, String content) {
         Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
         builder.setMessage(content);
@@ -363,19 +371,21 @@ public class LogonScreen extends Activity {
 
     /**
      * Switches to the result screen displaying the given text
+     *
      * @param success
      * @param text
      */
     protected void resultStatus(final boolean success, final String text) {
         Intent intent = new Intent(this, ResultScreen.class);
         intent.setAction(Intent.ACTION_VIEW);
-        intent.putExtra(ResultScreen.TITLE, success?getString(R.string.success_title):getString(R.string.error_title));
+        intent.putExtra(ResultScreen.TITLE, success ? getString(R.string.success_title) : getString(R.string.error_title));
         intent.putExtra(ResultScreen.DESC, text);
         startActivity(intent);
     }
 
     /**
      * removes the quotes from the given string if present
+     *
      * @param str
      * @return
      */
@@ -389,6 +399,7 @@ public class LogonScreen extends Activity {
 
     /**
      * Surrounds the given string with quotes
+     *
      * @param string
      * @return
      */
