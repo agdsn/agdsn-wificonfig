@@ -3,7 +3,7 @@ android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
-        applicationId "de.selfnet.wifisetup"
+        applicationId "de.agdsn.wifisetup"
         minSdkVersion 23
         targetSdkVersion 28
     }
