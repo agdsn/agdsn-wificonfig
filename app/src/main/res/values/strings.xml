@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">AG DSN Wi-Fi Setup</string>
+	<string name="app_name">AG DSN WiFi Setup</string>
 
 	<string name="provide_selfnet_credentials">Please provide your credentials</string>
 	<string name="myselfnet_url" translatable="false">https://agdsn.de</string>
 	<string name="default_email_hint" translatable="false">Your username</string>
 	<string name="password_hint">Your password</string>
 	<string name="create_connection_entry_button">Create connection entry</string>
-	<string name="selfnet_wlan_manual_url" translatable="false">https://agdsn.de</string>
+	<string name="selfnet_wlan_manual_url" translatable="false">https://agdsn.de/sipa/pages/service/wlan-test</string>
 	<string name="screen_lock_hint">Note: If you did not setup a screen lock, Android will refuse to store the security settings!</string>
 
 	<string name="ABOUT_TITLE">About</string>
@@ -35,7 +35,9 @@
 	<string name="no_credentials_provided">Please provide your Wi-Fi credentials.</string>
 	<string-array name="networks">
 		<item>IGH</item>
-		<item>gps-test</item>
+		<item>agdsn-gps-test</item>
 	</string-array>
 	<string name="choose_network">Choose network:</string>
+	<string name="screenlock_title">This app won\'t work without a screenlock!</string>
+	<string name="screenlock_text">When you don\'t have a screenlock, apps can\'t change WiFi-Settings! Click the button to open the settings.</string>
 </resources>

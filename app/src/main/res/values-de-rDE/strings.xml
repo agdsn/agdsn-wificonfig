@@ -2,7 +2,7 @@
 <resources>
     <string name="provide_selfnet_credentials">Gebe deine Anmeldedaten ein</string>
     <string name="password_hint">Dein Passwort</string>
-    <string name="create_connection_entry_button">Erstelle WLAN-Konfiguration</string>
+    <string name="create_connection_entry_button">Erstelle WiFi-Konfiguration</string>
     <string name="screen_lock_hint">Hinweis: Wenn du keinen Sperrbildschirm eingerichtet hast, kann Android die Einstellungen nicht speichern.</string>
     <string name="ABOUT_TITLE">Über</string>
     <string name="EXIT_TITLE">Beenden</string>
@@ -16,8 +16,8 @@
         durch die App in keinster Weise übertragen oder gespeichert.
     </string>
     <string name="logo_alt_test">AG DSN Logo</string>
-    <string name="app_name">AG DSN WLAN Setup</string>
-    <string name="ABOUT_CONTENT">Diese Anwendung konfiguriert das AG DSN WLAN für dein Smartphone.</string>
+    <string name="app_name">AG DSN WiFi Setup</string>
+    <string name="ABOUT_CONTENT">Diese Anwendung konfiguriert das AG DSN WiFi für dein Smartphone.</string>
     <string name="HELP_TEXT">Wenn du Probleme beim Verbinden mit dem WLAN hast, überprüfe bitte ob du dein Nutzername und das Passwort richtig eingegeben hast. Wenn die Verbindung dann immer noch nicht klappt, schreib uns einfach an <a href="mailto:support@agdsn.de">support@agdsn.de</a>.</string>
     <string name="success_title">Erfolg!</string>
     <string name="error_title">FEHLER!</string>
@@ -32,4 +32,6 @@
     <string name="error_explain_text">Etwas ist schief gelaufen: %s</string>
     <string name="no_credentials_provided">Bitte gebe deine Anmeldedaten ein.</string>
     <string name="choose_network">"Netzwerk wählen: "</string>
+    <string name="screenlock_title">Diese App wird ohne eine Displaysperre nicht funktionieren!</string>
+    <string name="screenlock_text">Wenn du keine Displaysperre hast, können Apps die WiFi-Einstellungen nicht ändern. Drücke auf den Knopf, um in die Einstellungen zu gelangen.</string>
 </resources>

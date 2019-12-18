@@ -20,6 +20,8 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.app.KeyguardManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.net.wifi.WifiConfiguration;
@@ -30,6 +32,7 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -143,6 +146,21 @@ public class LogonScreen extends Activity {
                 }
             }
         });
+
+        KeyguardManager keyguardManager = (KeyguardManager) getApplicationContext().getSystemService(KEYGUARD_SERVICE);
+        if (!keyguardManager.isDeviceSecure()){
+            Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(getString(R.string.screenlock_title));
+            builder.setMessage(getString(R.string.screenlock_text));
+            builder.setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Intent dialogIntent = new Intent(Settings.ACTION_SECURITY_SETTINGS);
+                    startActivity(dialogIntent);
+                }
+            });
+            builder.show();
+        }
     }
 
     /**
@@ -194,7 +212,7 @@ public class LogonScreen extends Activity {
      * Sets the wifi config
      */
     private void saveWifiConfig() {
-        WifiManager wifiManager = (WifiManager) this.getSystemService(WIFI_SERVICE);
+        WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(WIFI_SERVICE);
         wifiManager.setWifiEnabled(true);
 
         WifiConfiguration currentConfig = new WifiConfiguration();
@@ -286,9 +304,7 @@ public class LogonScreen extends Activity {
         }
         wifiManager.saveConfiguration();
     }
-
-
-    @TargetApi(Build.VERSION_CODES.M)
+    
     private void applyAndroid43EnterpriseSettings(WifiConfiguration currentConfig, HashMap<String, String> configMap) {
         try {
             CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
@@ -365,7 +381,6 @@ public class LogonScreen extends Activity {
         Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
         builder.setMessage(content);
-        builder.setPositiveButton(getString(android.R.string.ok), null);
         builder.show();
     }
 
