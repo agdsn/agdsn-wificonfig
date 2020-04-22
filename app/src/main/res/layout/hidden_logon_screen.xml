@@ -2,13 +2,13 @@
 <ScrollView
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:id="@+id/LogonScreen"
+        android:id="@+id/HiddenLogonScreen"
         xmlns:android="http://schemas.android.com/apk/res/android"
 >
     <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/logonLayout"
+            android:id="@+id/hiddenLogonLayout"
             android:orientation="vertical"
             android:gravity="center_horizontal|top"
             android:weightSum="1">
@@ -69,10 +69,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/choose_network" />
 
-                <Spinner
-                    android:id="@+id/networks"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/choosenNetwork"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="agdsn" />
+
             </LinearLayout>
 
             <TextView

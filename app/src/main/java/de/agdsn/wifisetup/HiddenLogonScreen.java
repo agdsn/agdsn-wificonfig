@@ -16,9 +16,7 @@
 
 package de.agdsn.wifisetup;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.KeyguardManager;
 import android.content.DialogInterface;
@@ -29,7 +27,6 @@ import android.net.wifi.WifiEnterpriseConfig;
 import android.net.wifi.WifiEnterpriseConfig.Eap;
 import android.net.wifi.WifiEnterpriseConfig.Phase2;
 import android.net.wifi.WifiManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -37,7 +34,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.io.InputStream;
 import java.security.cert.CertificateFactory;
@@ -48,7 +50,7 @@ import java.util.List;
 /* import android.util.Base64; */
 // API level 18 and up
 
-public class LogonScreen extends Activity {
+public class HiddenLogonScreen extends Activity {
     // FIXME This should be a configuration setting somehow
     private static final String INT_EAP = "eap";
     private static final String INT_PHASE2 = "phase2";
@@ -77,8 +79,8 @@ public class LogonScreen extends Activity {
     private Handler mHandler = new Handler();
     private EditText username;
     private EditText password;
+    private EditText choosenNetwork;
     private Button btn;
-    private Spinner networks;
     private Button qrScan;
 
     private String realm = "@email.space";
@@ -120,17 +122,12 @@ public class LogonScreen extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.logon_screen);
+        setContentView(R.layout.hidden_logon_screen);
 
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         btn = findViewById(R.id.button1);
-
-        networks = findViewById(R.id.networks);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.networks, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        networks.setAdapter(adapter);
+        choosenNetwork = findViewById(R.id.choosenNetwork);
 
         ImageView img = findViewById(R.id.logo);
         //Easter egg for clicking on the logo
@@ -138,17 +135,18 @@ public class LogonScreen extends Activity {
             @Override
             public void onClick(View view) {
                 logoclicks++;
+                if (logoclicks == 4) {
+                    toastText("You're cute!");
+                }
                 if (logoclicks == 6) {
-                    Intent intent = new Intent(getApplicationContext(),HiddenLogonScreen.class);
-                    intent.setAction(Intent.ACTION_VIEW);
-                    startActivity(intent);
+                    toastText("Stop that!");
                 }
             }
         });
 
         KeyguardManager keyguardManager = (KeyguardManager) getApplicationContext().getSystemService(KEYGUARD_SERVICE);
         if (!keyguardManager.isDeviceSecure()){
-            Builder builder = new AlertDialog.Builder(this);
+            Builder builder = new Builder(this);
             builder.setTitle(getString(R.string.screenlock_title));
             builder.setMessage(getString(R.string.screenlock_text));
             builder.setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
@@ -211,6 +209,7 @@ public class LogonScreen extends Activity {
      * Sets the wifi config
      */
     private void saveWifiConfig() {
+        ssid = choosenNetwork.getText().toString();
         WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(WIFI_SERVICE);
         wifiManager.setWifiEnabled(true);
 
@@ -226,7 +225,6 @@ public class LogonScreen extends Activity {
             }
         }
 
-        ssid = networks.getSelectedItem().toString();
         String altsubject_match = "DNS:radius.agdsn.de";
         String domain_suffix_match = "radius.agdsn.de";
 
@@ -303,7 +301,7 @@ public class LogonScreen extends Activity {
         }
         wifiManager.saveConfiguration();
     }
-    
+
     private void applyAndroid43EnterpriseSettings(WifiConfiguration currentConfig, HashMap<String, String> configMap) {
         try {
             CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
@@ -377,7 +375,7 @@ public class LogonScreen extends Activity {
     }
 
     private void showDialog(String title, String content) {
-        Builder builder = new AlertDialog.Builder(this);
+        Builder builder = new Builder(this);
         builder.setTitle(title);
         builder.setMessage(content);
         builder.show();
