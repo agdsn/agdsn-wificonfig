@@ -36,6 +36,7 @@
 	<string-array name="networks">
 		<item>IGH</item>
 		<item>agdsn-gps-test</item>
+		<item>agdsn-tharandt</item>
 	</string-array>
 	<string name="choose_network">Choose network:</string>
 	<string name="screenlock_title">This app won\'t work without a screenlock!</string>
