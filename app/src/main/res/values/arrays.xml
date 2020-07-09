@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string-array name="networks">
+        <item>IGH</item>
+        <item>agdsn-gps-test</item>
+        <item>agdsn-tharandt</item>
+    </string-array>
 </resources>

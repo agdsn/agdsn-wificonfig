@@ -33,11 +33,6 @@
 	<string name="success_explain_text">A Wi-Fi connection entry with the correct security settings was created.\n\nIf you face problems connecting to the AG DSN Wi-Fi please check whether you\'ve provided the correct credentials. This message only confirms the profile\'s creation but doesn\'t validate you username and password.</string>
 	<string name="error_explain_text">Something went wrong: %s</string>
 	<string name="no_credentials_provided">Please provide your Wi-Fi credentials.</string>
-	<string-array name="networks">
-		<item>IGH</item>
-		<item>agdsn-gps-test</item>
-		<item>agdsn-tharandt</item>
-	</string-array>
 	<string name="choose_network">Choose network:</string>
 	<string name="screenlock_title">This app won\'t work without a screenlock!</string>
 	<string name="screenlock_text">When you don\'t have a screenlock, apps can\'t change WiFi-Settings! Click the button to open the settings.</string>
