@@ -2,7 +2,7 @@
 <resources>
     <string-array name="networks">
         <item>IGH</item>
-        <item>agdsn-gps-test</item>
+        <item>agdsn</item>
         <item>agdsn-tharandt</item>
     </string-array>
 </resources>
