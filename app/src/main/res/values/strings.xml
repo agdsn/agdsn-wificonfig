@@ -7,7 +7,7 @@
 	<string name="default_email_hint" translatable="false">Your username</string>
 	<string name="password_hint">Your password</string>
 	<string name="create_connection_entry_button">Create connection entry</string>
-	<string name="selfnet_wlan_manual_url" translatable="false">https://agdsn.de/sipa/pages/service/wlan-test</string>
+	<string name="selfnet_wlan_manual_url" translatable="false">https://agdsn.de/sipa/pages/service/wlan</string>
 	<string name="screen_lock_hint">Note: If you did not setup a screen lock, Android will refuse to store the security settings!</string>
 
 	<string name="ABOUT_TITLE">About</string>
